@@ -1,4 +1,25 @@
 .fast-checkout {
+
+  .checkout-or-line {
+    position: relative;
+    margin: 0 1.2rem;
+
+    &::before {
+      content: "";
+      border-bottom: 1px solid #eee;
+      height: 2px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+    }
+
+    strong {
+      background-color: #fff;
+      padding: 0 1rem;
+    }
+  }
   .input-unit {
     border-color: #333;
     border-radius: 5px;
@@ -13,7 +34,7 @@
   .card {
     .card-header {
       button {
-        &:after {
+        &::after {
           content: "\f078";
           font-family: 'FontAwesome';
           font-size: .8rem;
@@ -26,7 +47,7 @@
         }
 
         &.collapsed {
-          &:after {
+          &::after {
             transform: rotate(0);
             transition: all .3s ease;
           }

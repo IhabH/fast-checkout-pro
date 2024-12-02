@@ -34,8 +34,9 @@
               <span>{{ $translate("FastCheckout::Template.emailAlreadyExist") }}</span>
               <a
                 class="btn btn-primary btn-appearance"
-                href="#"
-                @click.prevent="goToLogin"
+                href="#login"
+                :data-toggle="modal"
+                @click.prevent="goToLogin()"
               >
                 {{ $translate("FastCheckout::Template.loginNow") }}
               </a>
@@ -48,7 +49,8 @@
         >
           <div class="d-flex align-items-center">
             <a
-              href="#"
+              href="#registration"
+              :data-toggle="modal"
               @click.prevent="goToRegister()"
             >{{
               $translate("FastCheckout::Template.createAccount")

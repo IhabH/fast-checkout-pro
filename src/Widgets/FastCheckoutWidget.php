@@ -133,7 +133,11 @@ class FastCheckoutWidget extends BaseWidget
 
         $settingsFactory->createSpacing();
 
-        return WidgetTranslator::translateSettings($settingsFactory->toArray(), []);
+        return WidgetTranslator::translateSettings($settingsFactory->toArray(), [
+            "Widget.registerNote",
+            "Widget.customerBenefits",
+            "Widget.customerBenefit"
+        ]);
     }
 
     private function makeAddressFieldsValueList($fieldPrefix = 'billing_address.', $requiredFields = false, $addressLayout = "DE")

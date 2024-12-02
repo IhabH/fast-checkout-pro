@@ -128,10 +128,8 @@ export default {
         },
         ...mapState({
             showError: state => state.checkout.validation.account.showError
-        }),
-        ...mapActions([
-            "loadComponent"
-        ])
+        })
+
     },
 
     watch:
@@ -274,7 +272,11 @@ export default {
             {
                 this.showDuplicateMailMsg = status
                 this.$emit("save-addresses")
-            }
+            },
+
+            ...mapActions([
+                "loadComponent"
+            ])
         }
 }
 </script>

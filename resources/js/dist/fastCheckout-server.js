@@ -1461,7 +1461,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       currentNotification: null
     };
   },
-  computed: _objectSpread(_objectSpread({
+  computed: _objectSpread({
     customerFilteredBenefits: function customerFilteredBenefits() {
       return this.customerBenefits.filter(function (benefit) {
         return benefit !== "";
@@ -1471,7 +1471,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     showError: function showError(state) {
       return state.checkout.validation.account.showError;
     }
-  })), (0,vuex__WEBPACK_IMPORTED_MODULE_25__.mapActions)(["loadComponent"])),
+  })),
   watch: {
     username: function username() {
       if (this.showError) {
@@ -1487,7 +1487,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     this.$store.commit("setUsernameSilentValidator", this.silentValidation);
     this.username = this.email;
   },
-  methods: {
+  methods: _objectSpread({
     onUserNameChange: function onUserNameChange(event) {
       var _this = this;
       this.username = event.target.value;
@@ -1582,7 +1582,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       this.showDuplicateMailMsg = status;
       this.$emit("save-addresses");
     }
-  }
+  }, (0,vuex__WEBPACK_IMPORTED_MODULE_25__.mapActions)(["loadComponent"]))
 });
 
 /***/ }),

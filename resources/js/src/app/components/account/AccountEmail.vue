@@ -35,7 +35,7 @@
               <a
                 class="btn btn-primary btn-appearance"
                 href="#login"
-                :data-toggle="modal"
+                data-toggle="modal"
                 @click.prevent="goToLogin()"
               >
                 {{ $translate("FastCheckout::Template.loginNow") }}
@@ -50,7 +50,7 @@
           <div class="d-flex align-items-center">
             <a
               href="#registration"
-              :data-toggle="modal"
+              data-toggle="modal"
               @click.prevent="goToRegister()"
             >{{
               $translate("FastCheckout::Template.createAccount")

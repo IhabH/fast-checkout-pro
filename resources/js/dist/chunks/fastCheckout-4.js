@@ -1122,7 +1122,7 @@ var render = function render() {
     staticClass: "btn btn-primary btn-appearance",
     attrs: {
       href: "#login",
-      "data-toggle": _vm.modal
+      "data-toggle": "modal"
     },
     on: {
       click: function click($event) {
@@ -1137,7 +1137,7 @@ var render = function render() {
   }, [_c("a", {
     attrs: {
       href: "#registration",
-      "data-toggle": _vm.modal
+      "data-toggle": "modal"
     },
     on: {
       click: function click($event) {

@@ -42,7 +42,7 @@
       </div>
       <div
         id="customerCardAction"
-        class="accordion"
+        class="accordion d-none"
       >
         <div
           :class="{'border-bottom mb-4 h-auto': showLoginCard, 'border-0': !showLoginCard}"

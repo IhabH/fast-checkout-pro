@@ -1461,7 +1461,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       currentNotification: null
     };
   },
-  computed: _objectSpread({
+  computed: _objectSpread(_objectSpread({
     customerFilteredBenefits: function customerFilteredBenefits() {
       return this.customerBenefits.filter(function (benefit) {
         return benefit !== "";
@@ -1471,7 +1471,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     showError: function showError(state) {
       return state.checkout.validation.account.showError;
     }
-  })),
+  })), mapActions(["loadComponent"])),
   watch: {
     username: function username() {
       if (this.showError) {
@@ -1498,14 +1498,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }, 800);
     },
     goToLogin: function goToLogin() {
-      this.$store.commit("toggleShowLogin", true);
+      this.loadComponent("login-modal");
       $(".login-pwd-reset input[type='email']").trigger("focus").val(this.username);
       document.querySelector(".login-pwd-reset input[type='email']").dispatchEvent(new Event("input", {
         bubbles: true
       }));
     },
     goToRegister: function goToRegister() {
-      this.$store.commit("toggleShowRegister", true);
+      this.loadComponent("register-modal");
     },
     silentValidation: function silentValidation() {
       var _this2 = this;
@@ -2813,7 +2813,7 @@ var render = function render() {
     on: {
       "save-addresses": _vm.saveAddresses
     }
-  })], 2)])], 2), _vm._ssrNode(" "), _vm._ssrNode('<div id="customerCardAction" class="accordion">', "</div>", [_vm._ssrNode("<div" + _vm._ssrClass("card", {
+  })], 2)])], 2), _vm._ssrNode(" "), _vm._ssrNode('<div id="customerCardAction" class="accordion d-none">', "</div>", [_vm._ssrNode("<div" + _vm._ssrClass("card", {
     "border-bottom mb-4 h-auto": _vm.showLoginCard,
     "border-0": !_vm.showLoginCard
   }) + ">", "</div>", [_vm._ssrNode('<div id="loginCard" class="card-header border-bottom-0 bg-white"><h1 class="mb-0"><button type="button" data-toggle="collapse" data-target="#collapseLogin" aria-expanded="true" aria-controls="collapseLogin" class="btn btn-link position-relative btn-block d-block text-left px-1 collapsed">' + _vm._ssrEscape("\n              " + _vm._s(_vm.$translate("FastCheckout::Template.alreadyCustomer")) + "\n            ") + "</button></h1></div> "), _vm._ssrNode('<div id="collapseLogin" aria-labelledby="loginCard" data-parent="#customerCardAction" class="collapse">', "</div>", [_vm._ssrNode('<div class="card-body px-3">', "</div>", [_c("login")], 1)])], 2), _vm._ssrNode(" "), _vm._ssrNode("<div" + _vm._ssrClass("card", {
@@ -13972,7 +13972,7 @@ var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPOR
   false,
   null,
   null,
-  "ecc5cafe"
+  "42bc317b"
   
 )
 
@@ -14228,7 +14228,7 @@ var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPOR
   false,
   null,
   null,
-  "17b2ea4a"
+  "76cee378"
   
 )
 
@@ -14463,7 +14463,7 @@ var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPOR
   false,
   null,
   null,
-  "1ba22568"
+  "29b40f12"
   
 )
 
@@ -14668,7 +14668,7 @@ var component = (0,_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPOR
   false,
   null,
   null,
-  "9a3e4988"
+  "7701cd94"
   
 )
 
@@ -14845,7 +14845,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5f052996"
+  "5a108548"
   
 )
 
@@ -14882,7 +14882,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "1026372f"
+  "6db70f29"
   
 )
 
@@ -14919,7 +14919,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "962b04ce"
+  "0241be5f"
   
 )
 
@@ -14956,7 +14956,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "5440e2c4"
+  "9c5c8a84"
   
 )
 
@@ -14993,7 +14993,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
   false,
   null,
   null,
-  "72ca2176"
+  "7d2a0670"
   
 )
 
@@ -15952,14 +15952,14 @@ var render = function render() {
                             directives: [
                               {
                                 name: "validate",
-                                rawName: "v-validate:text",
-                                value: _vm.isInRequiredFields(
+                                rawName: "v-validate:mail",
+                                value: _vm.isInOptionalFields(
                                   "de",
                                   "delivery_address.email"
                                 ),
                                 expression:
-                                  "isInRequiredFields('de', 'delivery_address.email')",
-                                arg: "text",
+                                  "isInOptionalFields('de', 'delivery_address.email')",
+                                arg: "mail",
                               },
                             ],
                             staticClass: "input-unit",
@@ -15967,7 +15967,7 @@ var render = function render() {
                           },
                           [
                             _vm._ssrNode(
-                              '<input type="mail" name="email"' +
+                              '<input type="email" name="email"' +
                                 _vm._ssrAttr("id", "email" + _vm._uid) +
                                 ' data-testing="packing-station-de-email-input"' +
                                 _vm._ssrAttr("value", _vm.value.email) +
@@ -16767,14 +16767,14 @@ var render = function render() {
                             directives: [
                               {
                                 name: "validate",
-                                rawName: "v-validate:text",
-                                value: _vm.isInRequiredFields(
+                                rawName: "v-validate:mail",
+                                value: _vm.isInOptionalFields(
                                   "de",
                                   "billing_address.email"
                                 ),
                                 expression:
-                                  "isInRequiredFields('de', 'billing_address.email')",
-                                arg: "text",
+                                  "isInOptionalFields('de', 'billing_address.email')",
+                                arg: "mail",
                               },
                             ],
                             staticClass: "input-unit",
@@ -16782,7 +16782,7 @@ var render = function render() {
                           },
                           [
                             _vm._ssrNode(
-                              '<input type="mail" name="email"' +
+                              '<input type="email" name="email"' +
                                 _vm._ssrAttr("id", "email" + _vm._uid) +
                                 ' data-testing="billing-address-de-email-input"' +
                                 _vm._ssrAttr("value", _vm.value.email) +
@@ -17601,14 +17601,14 @@ var render = function render() {
                             directives: [
                               {
                                 name: "validate",
-                                rawName: "v-validate:text",
-                                value: _vm.isInRequiredFields(
+                                rawName: "v-validate:mail",
+                                value: _vm.isInOptionalFields(
                                   "gb",
                                   "billing_address.email"
                                 ),
                                 expression:
-                                  "isInRequiredFields('gb', 'billing_address.email')",
-                                arg: "text",
+                                  "isInOptionalFields('gb', 'billing_address.email')",
+                                arg: "mail",
                               },
                             ],
                             staticClass: "input-unit",
@@ -17616,7 +17616,7 @@ var render = function render() {
                           },
                           [
                             _vm._ssrNode(
-                              '<input type="mail" name="email"' +
+                              '<input type="email" name="email"' +
                                 _vm._ssrAttr("id", "email" + _vm._uid) +
                                 ' data-testing="billing-address-gb-email-input"' +
                                 _vm._ssrAttr("value", _vm.value.email) +
@@ -18330,14 +18330,14 @@ var render = function render() {
                             directives: [
                               {
                                 name: "validate",
-                                rawName: "v-validate:text",
-                                value: _vm.isInRequiredFields(
+                                rawName: "v-validate:mail",
+                                value: _vm.isInOptionalFields(
                                   "de",
                                   "delivery_address.email"
                                 ),
                                 expression:
-                                  "isInRequiredFields('de', 'delivery_address.email')",
-                                arg: "text",
+                                  "isInOptionalFields('de', 'delivery_address.email')",
+                                arg: "mail",
                               },
                             ],
                             staticClass: "input-unit",
@@ -18345,7 +18345,7 @@ var render = function render() {
                           },
                           [
                             _vm._ssrNode(
-                              '<input type="mail" name="email"' +
+                              '<input type="email" name="email"' +
                                 _vm._ssrAttr("id", "email" + _vm._uid) +
                                 ' data-testing="delivery-address-de-email-input"' +
                                 _vm._ssrAttr("value", _vm.value.email) +
@@ -19091,14 +19091,14 @@ var render = function render() {
                             directives: [
                               {
                                 name: "validate",
-                                rawName: "v-validate:text",
-                                value: _vm.isInRequiredFields(
+                                rawName: "v-validate:mail",
+                                value: _vm.isInOptionalFields(
                                   "gb",
                                   "delivery_address.email"
                                 ),
                                 expression:
-                                  "isInRequiredFields('gb', 'delivery_address.email')",
-                                arg: "text",
+                                  "isInOptionalFields('gb', 'delivery_address.email')",
+                                arg: "mail",
                               },
                             ],
                             staticClass: "input-unit",
@@ -19106,7 +19106,7 @@ var render = function render() {
                           },
                           [
                             _vm._ssrNode(
-                              '<input type="mail" name="email"' +
+                              '<input type="email" name="email"' +
                                 _vm._ssrAttr("id", "email" + _vm._uid) +
                                 ' data-testing="delivery-address-gb-email-input"' +
                                 _vm._ssrAttr("value", _vm.value.email) +

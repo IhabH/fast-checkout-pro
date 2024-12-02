@@ -128,7 +128,10 @@ export default {
         },
         ...mapState({
             showError: state => state.checkout.validation.account.showError
-        })
+        }),
+        ...mapActions([
+            "loadComponent"
+        ])
     },
 
     watch:
@@ -169,7 +172,7 @@ export default {
 
             goToLogin ()
             {
-                this.$store.commit("toggleShowLogin", true)
+                this.loadComponent("login-modal")
 
                 $(".login-pwd-reset input[type='email']")
                     .trigger("focus").val(this.username)
@@ -180,7 +183,7 @@ export default {
 
             goToRegister ()
             {
-                this.$store.commit("toggleShowRegister", true)
+                this.loadComponent("register-modal")
             },
 
             silentValidation ()

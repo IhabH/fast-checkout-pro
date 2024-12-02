@@ -43,11 +43,11 @@
     "glob": "^7.1.6",
     "mini-css-extract-plugin": "^1.0.0",
     "moment-locales-webpack-plugin": "^1.2.0",
-    "node-sass": "^7.0.0",
     "postcss": "^8.2.13",
     "postcss-loader": "^4.0.4",
     "postcss-scss": "^3.0.2",
     "q": "^1.5.1",
+    "sass": "^1.81.0",
     "sass-loader": "^11.0.1",
     "stylelint": "^13.7.2",
     "stylelint-config-twbs-bootstrap": "^2.1.0",
@@ -60,7 +60,7 @@
     "webpack-require-from": "^1.8.2"
   },
   "dependencies": {
-    "Ceres": "git+ssh://git@github.com/plentymarkets/plugin-ceres.git#5.0.61",
+    "Ceres": "git+ssh://git@github.com/plentymarkets/plugin-ceres.git#5.0.69",
     "core-js": "^3.10.1",
     "vue": "^2.6.12",
     "vuex": "^3.3.0"

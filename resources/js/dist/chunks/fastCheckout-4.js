@@ -119,7 +119,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       currentNotification: null
     };
   },
-  computed: _objectSpread({
+  computed: _objectSpread(_objectSpread({
     customerFilteredBenefits: function customerFilteredBenefits() {
       return this.customerBenefits.filter(function (benefit) {
         return benefit !== "";
@@ -129,7 +129,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     showError: function showError(state) {
       return state.checkout.validation.account.showError;
     }
-  })),
+  })), mapActions(["loadComponent"])),
   watch: {
     username: function username() {
       if (this.showError) {
@@ -156,14 +156,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
       }, 800);
     },
     goToLogin: function goToLogin() {
-      this.$store.commit("toggleShowLogin", true);
+      this.loadComponent("login-modal");
       $(".login-pwd-reset input[type='email']").trigger("focus").val(this.username);
       document.querySelector(".login-pwd-reset input[type='email']").dispatchEvent(new Event("input", {
         bubbles: true
       }));
     },
     goToRegister: function goToRegister() {
-      this.$store.commit("toggleShowRegister", true);
+      this.loadComponent("register-modal");
     },
     silentValidation: function silentValidation() {
       var _this2 = this;
@@ -1362,7 +1362,7 @@ var render = function render() {
       "save-addresses": _vm.saveAddresses
     }
   })], 1)])]), _vm._v(" "), _c("div", {
-    staticClass: "accordion",
+    staticClass: "accordion d-none",
     attrs: {
       id: "customerCardAction"
     }

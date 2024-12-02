@@ -1,0 +1,21 @@
+{% set loggedIn = frontend.Account.getIsAccountLoggedIn %}
+{% set contactId = '' %}
+
+{% if data is not empty %}
+{% set contactId = scServices.getCustomer().getContactIdByEmailFromOptions(data.order.billingAddress.options) %}
+{% endif %}
+
+{% if contactId is empty and not loggedIn %}
+<div class="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
+  <p class="h3 text-primary">Registrieren und Kundenvorteile sichern</p>
+  <ul class="fa-ul mb-2">
+    <li><i class="fa fa-li fa-check text-primary"></i>Schnellerer Bestellvorgang</li>
+    <li><i class="fa fa-li fa-check text-primary"></i>Bestellstatus jederzeit einsehen</li>
+    <li><i class="fa fa-li fa-check text-primary"></i>Persönliche Merkliste</li>
+    <li><i class="fa fa-li fa-check text-primary"></i>Exklusive Angebote</li>
+  </ul>
+</div>
+<div class="col-12 col-md-6 offset-md-3 offset-lg-4 col-lg-4 mb-5">
+  <quick-registration :order="{{ data.order | json_encode }}" />
+</div>
+{% endif %}

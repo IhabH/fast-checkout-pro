@@ -1,0 +1,19 @@
+{
+  "formatVersion": 1,
+  "menu": {
+    "global": {
+      "label": "Config.global",
+      "fullWidth": true,
+      "formFields": {
+        "global.isActive": {
+          "type": "checkBox",
+          "required": false,
+          "label": "Config.globalIsActive",
+          "options": {
+            "defaultValue": true
+          }
+        }
+      }
+    }
+  }
+}

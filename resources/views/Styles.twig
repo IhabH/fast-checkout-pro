@@ -1,0 +1,10 @@
+{% import "Ceres::PageDesign.Macros.Translations" as Translations %}
+
+{% if services.template.isCheckout() == "1" %}
+
+{{ Translations.add( "FastCheckout", "Template" ) }}
+
+<link rel="stylesheet" href="{{ plugin_path('FastCheckout') }}/css/fast-checkout.css" media="none" onload="if(media!='all')media='all'">
+<noscript><link rel="stylesheet" href="{{ plugin_path('FastCheckout') }}/css/fast-checkout.css"></noscript>
+
+{% endif %}

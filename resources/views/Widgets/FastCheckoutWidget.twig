@@ -1,0 +1,94 @@
+{% import "Ceres::Widgets.Helper.TwigBuilder" as Twig %}
+{% import "Ceres::Widgets.Helper.WidgetHelper" as WidgetHelper %}
+
+{% set customClass = widget.settings.customClass.mobile %}
+{% set spacingSettings = widget.settings.spacing %}
+{% set inlineMargin = WidgetHelper.getInlineSpacings(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set spacingMargin = WidgetHelper.getSpacingClasses(spacingSettings, "", spacingSettings.customMargin.mobile) %}
+{% set inlinePadding = WidgetHelper.getInlineSpacings(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+{% set spacingPadding = WidgetHelper.getSpacingClasses(spacingSettings, spacingSettings.customPadding.mobile, "") %}
+
+{% set customerBenefits = [] %}
+{% set renderBenefits = false %}
+{% set showRegisterNote = widget.settings.showRegisterNote.mobile %}
+
+{% if showRegisterNote %}
+  {% for benefit in widget.settings.customerBenefits.text.mobile if benefit | trim is not empty %}
+    {% set renderBenefits = true %}
+  {% endfor %}
+
+  {% if renderBenefits %}
+    {% set customerBenefits = widget.settings.customerBenefits.text.mobile %}
+  {% endif %}
+{% endif %}
+
+{{ Twig.import('LayoutContainer', 'Ceres::PageDesign.Macros.LayoutContainer') }}
+{{ Twig.component("Ceres::Customer.Components.AddressSelect.AddressSelect") }}
+
+{% set hintText = widget.settings.hintText.mobile %}
+
+{% set optionalInvoiceAddressFields = {
+"de": widget.settings.invoiceAddressContainer.addressFieldsInvoiceDE.mobile,
+"gb": widget.settings.invoiceAddressContainer.addressFieldsInvoiceGB.mobile
+} %}
+{% set requiredInvoiceAddressFields = {
+"de": widget.settings.invoiceAddressContainer.addressRequiredFieldsInvoiceDE.mobile,
+"gb": widget.settings.invoiceAddressContainer.addressRequiredFieldsInvoiceGB.mobile
+} %}
+
+{% set optionalShippingAddressFields = {
+"de": widget.settings.shippingAddressContainer.addressFieldsShippingDE.mobile,
+"gb": widget.settings.shippingAddressContainer.addressFieldsShippingGB.mobile
+} %}
+{% set requiredShippingAddressFields = {
+"de": widget.settings.shippingAddressContainer.addressRequiredFieldsShippingDE.mobile,
+"gb": widget.settings.shippingAddressContainer.addressRequiredFieldsShippingGB.mobile
+} %}
+
+<div class="widget widget-fast-checkout widget-{{ widget.settings.appearance.mobile | default("primary") }}{% if
+  customClass | length> 0 %} {{ customClass }}{% endif %}{% if spacingMargin | length > 0 %} {{ spacingMargin }}{% endif
+  %}"{% if inlineMargin | length> 0 %}style="{{ inlineMargin }}"{% endif %}>
+  <fast-checkout 
+    :is-shop-builder="{{ isPreview | json_encode }}"
+    :optional-invoice-address-fields="{{ optionalInvoiceAddressFields | json_encode }}"
+    :required-invoice-address-fields="{{ requiredInvoiceAddressFields | json_encode }}"
+    :optional-shipping-address-fields="{{ optionalShippingAddressFields | json_encode }}"
+    :required-shipping-address-fields="{{ requiredShippingAddressFields | json_encode }}"
+    default-salutation="{{ widget.settings.addressDefaultSalutation.mobile }}" 
+    :show-register-note="{{ showRegisterNote | json_encode }}"
+    :customer-benefits="{{ customerBenefits | json_encode | default([]) }}"
+    email="{{ Twig.print("services.customer.getEmail()") }}">
+    <template #addresses>
+      <div>
+        <h3>{{ Twig.trans("Ceres::Template.checkoutInvoiceAddress") }}</h3>
+      </div>
+      {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::Checkout.BeforeBillingAddress"]) ) }}
+      <div class="invoice-addresses-select">
+        <invoice-address-select 
+        :has-to-validate="true" 
+        :optional-address-fields="{{ optionalInvoiceAddressFields | json_encode }}"
+        :required-address-fields="{{ requiredInvoiceAddressFields | json_encode }}"
+        default-salutation="{{ widget.settings.addressDefaultSalutation.mobile }}"
+        email="{{ Twig.print("services.customer.getEmail()") }}">
+        </invoice-address-select>
+      </div>
+      {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::Checkout.AfterBillingAddress"]) ) }}
+
+      <div>
+        <h3>{{ Twig.trans("Ceres::Template.checkoutShippingAddress") }}</h3>
+      </div>
+      {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::Checkout.BeforeShippingAddress"]) ) }}
+      <div class="shipping-addresses-select">
+        <shipping-address-select 
+          :optional-address-fields="{{ optionalShippingAddressFields | json_encode }}"
+          :required-address-fields="{{ requiredShippingAddressFields | json_encode }}"
+          :has-any-parcel-box-preset="{{ Twig.print("services.shipping.hasAnyParcelBoxPreset() | json_encode") }}"
+          :has-any-post-office-preset="{{ Twig.print("services.shipping.hasAnyPostOfficePreset() | json_encode") }}"
+          default-salutation="{{ widget.settings.addressDefaultSalutation.mobile }}"
+          email="{{ Twig.print("services.customer.getEmail()") }}">
+        </shipping-address-select>
+      </div>
+      {{ Twig.print(Twig.call("LayoutContainer.show", ["Ceres::Checkout.AfterShippingAddress"]) ) }}
+    </template>
+  </fast-checkout>
+</div>

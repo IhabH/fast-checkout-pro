@@ -1,0 +1,22 @@
+.fast-checkout .input-unit {
+  border-color: #333;
+  border-radius: 5px; }
+
+.fast-checkout #customerCardAction .card {
+  height: 0; }
+
+.fast-checkout .card .card-header button:after {
+  content: "\f078";
+  font-family: 'FontAwesome';
+  font-size: .8rem;
+  vertical-align: text-bottom;
+  right: 0.5rem;
+  position: absolute;
+  transform: rotate(180deg);
+  transition: all .3s ease;
+  min-height: unset; }
+
+.fast-checkout .card .card-header button.collapsed:after {
+  transform: rotate(0);
+  transition: all .3s ease; }
+

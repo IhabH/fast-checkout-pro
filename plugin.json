@@ -1,0 +1,23 @@
+{
+  "version": "1.0.0",
+  "name": "FastCheckout",
+  "namespace": "FastCheckout",
+  "isClosedSource": true,
+  "marketplaceName": {
+    "de": "Fast checkout",
+    "en": "Fast checkout"
+  },
+  "platform": {
+    "php": ">=7.3 <8.1"
+  },
+  "author": "Ihab Hussein",
+  "type": "template",
+  "serviceProvider": "FastCheckout\\Providers\\FastCheckoutServiceProvider",
+  "dataProvidersInVisible": [
+    {
+      "key": "FastCheckout\\Containers\\RegisterContainer",
+      "name": "OrderConfirmationCustomerRegister",
+      "description": "Display simple registration in order confirmation"
+    }
+  ]
+}

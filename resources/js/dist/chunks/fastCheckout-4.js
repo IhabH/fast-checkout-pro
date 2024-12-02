@@ -129,7 +129,7 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
     showError: function showError(state) {
       return state.checkout.validation.account.showError;
     }
-  })), mapActions(["loadComponent"])),
+  })), (0,vuex__WEBPACK_IMPORTED_MODULE_25__.mapActions)(["loadComponent"])),
   watch: {
     username: function username() {
       if (this.showError) {

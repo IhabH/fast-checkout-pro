@@ -1121,12 +1121,13 @@ var render = function render() {
   }, [_c("span", [_vm._v(_vm._s(_vm.$translate("FastCheckout::Template.emailAlreadyExist")))]), _vm._v(" "), _c("a", {
     staticClass: "btn btn-primary btn-appearance",
     attrs: {
-      href: "#"
+      href: "#login",
+      "data-toggle": _vm.modal
     },
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.goToLogin.apply(null, arguments);
+        return _vm.goToLogin();
       }
     }
   }, [_vm._v("\n              " + _vm._s(_vm.$translate("FastCheckout::Template.loginNow")) + "\n            ")])])])]) : _vm._e(), _vm._v(" "), !_vm.showDuplicateMailMsg && _vm.showRegisterNote ? _c("div", {
@@ -1135,7 +1136,8 @@ var render = function render() {
     staticClass: "d-flex align-items-center"
   }, [_c("a", {
     attrs: {
-      href: "#"
+      href: "#registration",
+      "data-toggle": _vm.modal
     },
     on: {
       click: function click($event) {
